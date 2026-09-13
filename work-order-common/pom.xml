@@ -10,11 +10,11 @@
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>workorder-common</artifactId>
+    <artifactId>work-order-common</artifactId>
     <packaging>jar</packaging>
 
-    <name>workorder-common</name>
-    <description>公共模块：被其他子模块引用即可获得 Nacos / Feign / Web / Actuator / OpenAPI 等公共依赖</description>
+    <name>work-order-common</name>
+    <description>公共模块</description>
 
     <dependencies>
         <!-- Lombok（编译期，provided；各使用 Lombok 的模块需自行声明） -->

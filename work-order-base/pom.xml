@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.acme.workorder</groupId>
+        <artifactId>work-order-system</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <artifactId>work-order-base</artifactId>
+    <packaging>jar</packaging>
+
+    <name>work-order-base</name>
+    <description>base基础数据管理模块</description>
+
+    <dependencies>
+        <!-- Lombok（编译期，provided；各使用 Lombok 的模块需自行声明） -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <!-- 测试（注意：test 作用域依赖不会传递，下游服务如需单测自行再声明） -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.acme.workorder</groupId>
+            <artifactId>work-order-common</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>

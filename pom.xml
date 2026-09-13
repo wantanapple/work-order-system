@@ -14,7 +14,8 @@
 
     <!-- 子模块：workorder-common 已创建，其余按需创建并取消注释 -->
     <modules>
-        <module>workorder-common</module>
+        <module>work-order-common</module>
+        <module>work-order-base</module>
         <!-- <module>workorder-gateway</module>  API 网关：路由转发 / 鉴权 / 限流 -->
         <!-- <module>workorder-user</module>     用户管理服务 -->
         <!-- <module>workorder-ticket</module>   工单管理服务（核心） -->
@@ -42,7 +43,7 @@
             <!-- 本项目公共模块：子模块引用时无需写版本 -->
             <dependency>
                 <groupId>com.acme.workorder</groupId>
-                <artifactId>workorder-common</artifactId>
+                <artifactId>work-order-common</artifactId>
                 <version>${project.version}</version>
             </dependency>
 

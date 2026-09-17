@@ -8,15 +8,21 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  */
 public class CorsConfig implements WebMvcConfigurer {
 
-    /** CORS 配置项 */
+    /**
+     * CORS 配置项
+     */
     private final CorsProperties corsProperties;
 
-    /** 注入 CORS 配置项 */
+    /**
+     * 注入 CORS 配置项
+     */
     public CorsConfig(CorsProperties corsProperties) {
         this.corsProperties = corsProperties;
     }
 
-    /** 未启用 CORS 时不注册映射；否则对所有路径注册全局跨域规则 */
+    /**
+     * 未启用 CORS 时不注册映射；否则对所有路径注册全局跨域规则
+     */
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         if (!corsProperties.isEnabled()) {

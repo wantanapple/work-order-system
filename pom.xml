@@ -28,7 +28,6 @@
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
         <!-- 依赖版本统一管理 -->
         <spring-boot.version>3.3.5</spring-boot.version>
         <spring-cloud.version>2023.0.1</spring-cloud.version>
@@ -36,6 +35,9 @@
         <springdoc.version>2.6.0</springdoc.version>
         <lombok.version>1.18.34</lombok.version>
         <mybatis-plus.version>3.5.7</mybatis-plus.version>
+        <mybatis-plus-spring-boot3-starter.version>3.5.7</mybatis-plus-spring-boot3-starter.version>
+        <hutool.version>5.8.32</hutool.version>
+        <fastjson2.version>2.0.56</fastjson2.version>
     </properties>
 
     <dependencyManagement>
@@ -46,7 +48,6 @@
                 <artifactId>work-order-common</artifactId>
                 <version>${project.version}</version>
             </dependency>
-
             <!-- Spring Boot -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -89,8 +90,25 @@
                 <artifactId>mybatis-plus</artifactId>
                 <version>${mybatis-plus.version}</version>
             </dependency>
+            <!-- MyBatis-Plus 适配 Spring Boot 3 -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+                <version>${mybatis-plus-spring-boot3-starter.version}</version>
+            </dependency>
+            <!-- Hutool：通用工具包，版本统一由父工程管理 -->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+            <!-- fastjson2：JSON 序列化/反序列化 -->
+            <dependency>
+                <groupId>com.alibaba.fastjson2</groupId>
+                <artifactId>fastjson2</artifactId>
+                <version>${fastjson2.version}</version>
+            </dependency>
         </dependencies>
-
     </dependencyManagement>
 
     <build>

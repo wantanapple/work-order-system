@@ -7,10 +7,14 @@ package com.acme.workorder.common.snowflake;
  */
 public interface IdGenerator {
 
-    /** 生成一个全局唯一、趋势递增的 long 型 ID */
+    /**
+     * 生成一个全局唯一、趋势递增的 long 型 ID
+     */
     long nextId();
 
-    /** 生成字符串形式 ID */
+    /**
+     * 生成字符串形式 ID
+     */
     default String nextIdStr() {
         return Long.toString(nextId());
     }

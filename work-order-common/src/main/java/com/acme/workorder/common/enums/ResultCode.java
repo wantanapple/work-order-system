@@ -12,13 +12,19 @@ public enum ResultCode {
     INTERNAL_ERROR(500, "internal error"),
     BIZ_ERROR(1000, "business error");
 
-    /** 错误码 */
+    /**
+     * 错误码
+     */
     private final int code;
 
-    /** 错误信息 */
+    /**
+     * 错误信息
+     */
     private final String message;
 
-    /** 构造错误码枚举 */
+    /**
+     * 构造错误码枚举
+     */
     ResultCode(int code, String message) {
         this.code = code;
         this.message = message;

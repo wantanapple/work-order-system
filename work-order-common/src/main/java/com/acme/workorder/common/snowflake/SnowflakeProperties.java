@@ -11,15 +11,23 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "workorder.snowflake")
 public class SnowflakeProperties {
 
-    /** 是否启用（自动装配 IdGenerator Bean），默认 true */
+    /**
+     * 是否启用（自动装配 IdGenerator Bean），默认 true
+     */
     private boolean enabled = true;
 
-    /** 起始纪元（毫秒），默认 2024-01-01 00:00:00 UTC */
+    /**
+     * 起始纪元（毫秒），默认 2024-01-01 00:00:00 UTC
+     */
     private long epoch = 1704067200000L;
 
-    /** 机器编号（0-31） */
+    /**
+     * 机器编号（0-31）
+     */
     private long workerId = 0;
 
-    /** 数据中心编号（0-31） */
+    /**
+     * 数据中心编号（0-31）
+     */
     private long datacenterId = 0;
 }

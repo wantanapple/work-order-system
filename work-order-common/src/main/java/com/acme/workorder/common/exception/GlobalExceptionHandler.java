@@ -16,27 +16,35 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    /** 业务异常：记录 warn 并返回对应错误码 */
+    /**
+     * 业务异常：记录 warn 并返回对应错误码
+     */
     @ExceptionHandler(BizException.class)
     public Result<Void> handleBizException(BizException e) {
         log.warn("business error: code={}, msg={}", e.getCode(), e.getMessage());
         return Result.fail(e.getCode(), e.getMessage());
     }
 
-    /** 请求体不可读（如 JSON 解析失败）：返回 400 */
+    /**
+     * 请求体不可读（如 JSON 解析失败）：返回 400
+     */
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public Result<Void> handleNotReadable(HttpMessageNotReadableException e) {
         log.warn("request body not readable", e);
         return Result.fail(ResultCode.BAD_REQUEST.getCode(), "request body invalid");
     }
 
-    /** 参数类型不匹配：返回 400 */
+    /**
+     * 参数类型不匹配：返回 400
+     */
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     public Result<Void> handleTypeMismatch(MethodArgumentTypeMismatchException e) {
         return Result.fail(ResultCode.BAD_REQUEST.getCode(), "param type invalid: " + e.getName());
     }
 
-    /** 兜底异常：记录 error 并返回 500 */
+    /**
+     * 兜底异常：记录 error 并返回 500
+     */
     @ExceptionHandler(Exception.class)
     public Result<Void> handleUnknown(Exception e) {
         log.error("unhandled exception", e);

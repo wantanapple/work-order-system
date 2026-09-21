@@ -103,7 +103,7 @@ public class CompanyController {
     @PostMapping("/delete")
     public Result<List<String>> delete(
             @Parameter(description = "删除公司请求参数", required = true)
-            @Valid @RequestBody List<Long> deleteIds) {
+            @RequestBody List<Long> deleteIds) {
         List<String> ids = companyService.delete(deleteIds);
         return Result.ok(ids);
     }

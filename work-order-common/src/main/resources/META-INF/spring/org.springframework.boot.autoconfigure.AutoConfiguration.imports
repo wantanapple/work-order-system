@@ -1,1 +1,6 @@
-com.acme.workorder.common.config.CommonAutoConfiguration
+com.acme.workorder.common.config.CorsAutoConfiguration
+com.acme.workorder.common.config.MybatisPlusAutoConfiguration
+com.acme.workorder.common.config.GlobalExceptionAutoConfiguration
+com.acme.workorder.common.config.JacksonAutoConfiguration
+com.acme.workorder.common.config.PasswordEncoderAutoConfiguration
+com.acme.workorder.common.config.JwtAuthAutoConfiguration

@@ -1,4 +1,4 @@
-package com.acme.workorder.common.snowflake;
+package com.acme.workorder.common.config.snowflake;
 
 /**
  * 雪花算法 ID 生成器（线程安全）。

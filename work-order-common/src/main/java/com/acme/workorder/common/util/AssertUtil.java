@@ -1,7 +1,7 @@
 package com.acme.workorder.common.util;
 
 import com.acme.workorder.common.enums.ResultCode;
-import com.acme.workorder.common.exception.BizException;
+import com.acme.workorder.common.config.exception.BizException;
 
 import java.util.Collection;
 import java.util.Map;

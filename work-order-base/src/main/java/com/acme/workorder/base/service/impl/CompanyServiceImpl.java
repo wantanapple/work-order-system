@@ -11,7 +11,7 @@ import com.acme.workorder.base.vo.CompanyPageVO;
 import com.acme.workorder.common.dto.PageQuery;
 import com.acme.workorder.common.dto.PageResult;
 import com.acme.workorder.common.enums.ResultCode;
-import com.acme.workorder.common.exception.BizException;
+import com.acme.workorder.common.config.exception.BizException;
 import com.acme.workorder.common.util.AssertUtil;
 import com.acme.workorder.common.util.QueryWrapperUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -28,14 +28,6 @@ import java.util.stream.Collectors;
 
 @Service
 public class CompanyServiceImpl extends ServiceImpl<CompanyMapper, CompanyPO> implements CompanyService {
-
-    /**
-     * 允许作为排序字段的白名单（CompanyPO 属性名），防止前端任意传值拼接进 SQL 造成注入。
-     */
-    private static final Set<String> ALLOWED_ORDER_FIELDS = Set.of(
-            "id", "companyName", "companyCode", "companyAddr",
-            "createdBy", "updatedBy", "createdTime", "updatedTime"
-    );
 
     /**
      * 新建公司：参数非空校验 → 公司代码唯一性校验 → 入库，返回新公司主键 id。
@@ -58,14 +50,13 @@ public class CompanyServiceImpl extends ServiceImpl<CompanyMapper, CompanyPO> im
         AssertUtil.notNull(pageQuery, ResultCode.BAD_REQUEST, "分页查询参数不能为空");
         //校验前端传过来的分页参数
         pageQuery.normalize();
-        //排序字段白名单校验，防止任意值拼入 SQL 造成注入
-        validateOrderBy(pageQuery.getOrderBy());
         QueryWrapper<CompanyPO> companyPOQueryWrapper = QueryWrapperUtil.buildWrapper(CompanyPO.class, pageQuery);
         //构建分页对象
         Page<CompanyPO> page = Page.of(pageQuery.getPageNum(), pageQuery.getPageSize());
         Page<CompanyPO> companyPOPage = this.page(page, companyPOQueryWrapper);
         List<CompanyPageVO> companyPageVOList = BeanUtil.copyToList(companyPOPage.getRecords(), CompanyPageVO.class);
-        return PageResult.of(companyPOPage.getTotal(),
+        return PageResult.of(
+                companyPOPage.getTotal(),
                 companyPOPage.getCurrent(),
                 companyPOPage.getSize(),
                 companyPOPage.getPages(),
@@ -128,18 +119,6 @@ public class CompanyServiceImpl extends ServiceImpl<CompanyMapper, CompanyPO> im
                 .ne(CompanyPO::getId, updateCompanyDTO.getId()));
         if (occupied) {
             throw new BizException(ResultCode.BIZ_ERROR, "公司代码已存在");
-        }
-    }
-
-    /**
-     * 校验排序字段必须在白名单内；为空则跳过（由 QueryWrapperUtil 处理）。
-     */
-    private void validateOrderBy(String orderBy) {
-        if (orderBy == null || orderBy.isBlank()) {
-            return;
-        }
-        if (!ALLOWED_ORDER_FIELDS.contains(orderBy)) {
-            throw new BizException(ResultCode.BAD_REQUEST, "非法的排序字段: " + orderBy);
         }
     }
 

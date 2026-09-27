@@ -7,24 +7,16 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-@TableName("company")
-public class CompanyPO {
+@TableName("user_role")
+public class UserRolePO {
 
-    @Schema(description = "主键id")
-    @TableId(value = "id", type = IdType.ASSIGN_ID)
-    private Long id;
+    @Schema(description = "用户ID")
+    @TableField("user_id")
+    private Long userId;
 
-    @Schema(description = "公司名称")
-    @TableField("company_name")
-    private String companyName;
-
-    @Schema(description = "公司代码")
-    @TableField("company_code")
-    private String companyCode;
-
-    @Schema(description = "公司地址")
-    @TableField("company_addr")
-    private String companyAddr;
+    @Schema(description = "角色ID")
+    @TableField("role_id")
+    private Long roleId;
 
     @Schema(description = "创建人")
     @TableField("created_by")

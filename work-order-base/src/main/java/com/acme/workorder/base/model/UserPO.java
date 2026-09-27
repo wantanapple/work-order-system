@@ -7,24 +7,32 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-@TableName("company")
-public class CompanyPO {
+@TableName("user")
+public class UserPO {
 
     @Schema(description = "主键id")
     @TableId(value = "id", type = IdType.ASSIGN_ID)
     private Long id;
 
-    @Schema(description = "公司名称")
-    @TableField("company_name")
-    private String companyName;
+    @Schema(description = "用户名")
+    @TableField("username")
+    private String username;
 
-    @Schema(description = "公司代码")
-    @TableField("company_code")
-    private String companyCode;
+    @Schema(description = "密码")
+    @TableField("password")
+    private String password;
 
-    @Schema(description = "公司地址")
-    @TableField("company_addr")
-    private String companyAddr;
+    @Schema(description = "昵称")
+    @TableField("nickname")
+    private String nickname;
+
+    @Schema(description = "所属公司")
+    @TableField("company_id")
+    private Long companyId;
+
+    @Schema(description = "状态：1启用 0禁用")
+    @TableField("status")
+    private Integer status;
 
     @Schema(description = "创建人")
     @TableField("created_by")
@@ -41,4 +49,5 @@ public class CompanyPO {
     @Schema(description = "更新时间")
     @TableField(value = "updated_time", fill = FieldFill.INSERT_UPDATE)
     private Date updatedTime;
+
 }

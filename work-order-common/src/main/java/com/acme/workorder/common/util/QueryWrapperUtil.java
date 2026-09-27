@@ -2,6 +2,8 @@ package com.acme.workorder.common.util;
 
 import com.acme.workorder.common.dto.PageQuery;
 import com.acme.workorder.common.dto.QueryCondition;
+import com.acme.workorder.common.config.exception.BizException;
+import com.acme.workorder.common.enums.ResultCode;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.TableFieldInfo;
 import com.baomidou.mybatisplus.core.metadata.TableInfo;
@@ -13,6 +15,7 @@ import java.util.*;
  * 将 PageQuery 的动态条件封装为 MyBatis-Plus 的 QueryWrapper。
  * - conditions 为空 -> 空 wrapper（全量分页）
  * - 条件 field 为实体属性名，自动映射为数据库列名（依赖 MP 已初始化该实体 TableInfo）
+ * - orderBy 为实体属性名，必须在该实体已映射字段内，否则抛 BizException（防 SQL 注入）
  */
 public final class QueryWrapperUtil {
 
@@ -28,9 +31,23 @@ public final class QueryWrapperUtil {
             return wrapper;
         }
         Map<String, String> propToColumn = propertyToColumnMap(entityClass);
+        // 排序字段白名单校验：只允许当前实体已映射的字段，防止前端任意传值拼入 SQL
+        validateOrderBy(pageQuery.getOrderBy(), propToColumn);
         applyConditions(wrapper, propToColumn, pageQuery.getConditions());
         applyOrderBy(wrapper, propToColumn, pageQuery);
         return wrapper;
+    }
+
+    /**
+     * 校验排序字段是否在当前实体已映射字段范围内；orderBy 为空则跳过（由 applyOrderBy 处理不排序场景）。
+     */
+    private static void validateOrderBy(String orderBy, Map<String, String> propToColumn) {
+        if (orderBy == null || orderBy.isBlank()) {
+            return;
+        }
+        if (!propToColumn.containsKey(orderBy)) {
+            throw new BizException(ResultCode.BAD_REQUEST, "非法的排序字段: " + orderBy);
+        }
     }
 
     /**

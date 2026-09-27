@@ -1,4 +1,4 @@
-package com.acme.workorder.common.mybatis;
+package com.acme.workorder.common.config.mybatis;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import org.apache.ibatis.reflection.MetaObject;

@@ -1,4 +1,4 @@
-package com.acme.workorder.common.web;
+package com.acme.workorder.common.config.web;
 
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;

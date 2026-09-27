@@ -1,4 +1,4 @@
-package com.acme.workorder.common.web;
+package com.acme.workorder.common.config.web;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

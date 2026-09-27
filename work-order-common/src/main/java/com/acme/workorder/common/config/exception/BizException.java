@@ -1,4 +1,4 @@
-package com.acme.workorder.common.exception;
+package com.acme.workorder.common.config.exception;
 
 import com.acme.workorder.common.enums.ResultCode;
 

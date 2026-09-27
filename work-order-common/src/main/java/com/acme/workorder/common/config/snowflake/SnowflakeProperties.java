@@ -1,4 +1,4 @@
-package com.acme.workorder.common.snowflake;
+package com.acme.workorder.common.config.snowflake;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

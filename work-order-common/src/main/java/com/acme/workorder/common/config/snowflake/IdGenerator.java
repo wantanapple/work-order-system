@@ -1,4 +1,4 @@
-package com.acme.workorder.common.snowflake;
+package com.acme.workorder.common.config.snowflake;
 
 /**
  * 全局唯一 ID 生成器。
